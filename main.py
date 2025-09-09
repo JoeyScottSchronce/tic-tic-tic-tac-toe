@@ -10,6 +10,8 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
 from game_logic import GameBoard, Circle, Cross
+from kivy.graphics import Color, Line
+
 
 
 class Board(GridLayout):
@@ -33,7 +35,6 @@ class Board(GridLayout):
         self.spacing = 10
 
     # Draw white tic-tac-toe grid behind buttons
-        from kivy.graphics import Color, Line
         with self.canvas.before:
             Color(1, 1, 1, 1)
             self.v_lines = [Line(width=6) for _ in range(2)]
@@ -144,7 +145,7 @@ class TicTacToeApp(App):
         board.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
         root.add_widget(status_label)
         root.add_widget(board)
-        root.add_widget(Widget(size_hint=(1, 0.1)))  # Spacer below the grid
+        root.add_widget(Widget(size_hint=(1, 0.1)))
 
         return root
 
