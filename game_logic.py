@@ -83,8 +83,8 @@ class Play:
     def make_move(self, row, col):
         """
         Attempts to place the player's symbol at the given position.
-        Enforces turn order, prevents overwriting, checks for win condition,
-        and depreciates oldest move if more than 3 are active.
+        Enforces turn order, prevents overwriting, depreciates oldest move if more than 3 are active,
+        and checks for win condition.
         Args:
             row (int): Row index (0–2).
             col (int): Column index (0–2).
@@ -111,18 +111,18 @@ class Play:
         self.board.moves[self.symbol].append((row, col))
         print(f"{self.symbol} placed at ({row},{col})")
 
-        # Check win before depreciation
-        if self.board.check_winner(self.symbol):
-            self.board.display()
-            print(f"{self.symbol} wins!")
-            self.board.game_over = True
-            return
-
         # Depreciate oldest move if more than 3
         if len(self.board.moves[self.symbol]) > 3:
             old_row, old_col = self.board.moves[self.symbol].pop(0)
             self.board.board[old_row][old_col] = None
             print(f"{self.symbol}'s move at ({old_row},{old_col}) was removed")
+
+        # Check win after depreciation
+        if self.board.check_winner(self.symbol):
+            self.board.display()
+            print(f"{self.symbol} wins!")
+            self.board.game_over = True
+            return
 
         # Switch turn
         self.board.current_turn = 'X' if self.symbol == 'O' else 'O'
