@@ -78,5 +78,4 @@ This runs all unit tests for the game logic.
 
 ## Notes
 
-- For mobile packaging, see [Kivy Buildozer documentation](https://buildozer.readthedocs.io/en/latest/).
 - If you add new dependencies, update `requirements.txt` with `pip freeze > requirements.txt`.
