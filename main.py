@@ -30,7 +30,7 @@ class Board(GridLayout):
         self.cols = 3
         self.rows = 3
         self.size_hint = (None, None)
-        self.size = (500, 500)
+        self.size = (380, 380)
         self.padding = 10
         self.spacing = 10
 
@@ -59,6 +59,13 @@ class Board(GridLayout):
                 btn.bind(on_release=lambda btn, r=row, c=col: self.handle_move(r, c))
                 self.buttons.append(btn)
                 self.add_widget(btn)
+    
+    def reset_game(self):
+        self.game.reset()
+        self.update_board()
+        # Show the current turn from game_logic after reset
+        turn = self.game.current_turn if self.game.current_turn else "X"
+        self.status_label.text = f"{turn}'s turn"
 
     def handle_move(self, row, col):
         """
@@ -90,12 +97,18 @@ class Board(GridLayout):
 
     def update_board(self):
         """
-        Updates button text to reflect the current board state.
+        Updates button text and color to reflect the current board state.
         """
         for i, btn in enumerate(self.buttons):
             row, col = divmod(i, 3)
             value = self.game.board[row][col]
             btn.text = value if value else ''
+            if value == 'X':
+                btn.color = (0, 1, 0, 1)  # Green
+            elif value == 'O':
+                btn.color = (0.8, 0, 0.8, 1)  # Bright purple
+            else:
+                btn.color = (1, 1, 1, 1)  # White/Default
 
     def update_lines(self, *args):
         """
@@ -140,12 +153,23 @@ class TicTacToeApp(App):
             BoxLayout: The root widget containing all UI elements.
         """
         root = BoxLayout(orientation='vertical')
-        status_label = Label(text="X's turn", size_hint=(1, 0.1), font_size=32)
+        root.add_widget(Widget(size_hint=(1, 0.1)))
+        status_label = Label(text="X's turn", size_hint=(1, 0.1), font_size=32, bold=True)
         board = Board(status_label)
         board.pos_hint = {'center_x': 0.5, 'center_y': 0.5}
         root.add_widget(status_label)
+        root.add_widget(Widget(size_hint=(1, 0.1)))
         root.add_widget(board)
         root.add_widget(Widget(size_hint=(1, 0.1)))
+        btn_row = BoxLayout(orientation='horizontal', size_hint=(1, 0.07))
+        btn_row.add_widget(Widget(size_hint=(0.35, 1)))  # left spacer
+        reset_btn = Button(text="Reset", size_hint=(0.3, 1), font_size=18)
+        reset_btn.bind(on_release=lambda instance: board.reset_game())
+        btn_row.add_widget(reset_btn)
+        btn_row.add_widget(Widget(size_hint=(0.35, 1)))  # right spacer
+        root.add_widget(btn_row)
+        root.add_widget(Widget(size_hint=(1, 0.1)))
+
 
         return root
 
