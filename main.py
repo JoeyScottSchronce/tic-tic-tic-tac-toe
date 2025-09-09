@@ -9,20 +9,7 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
-
-# Import game logic
 from game_logic import GameBoard, Circle, Cross
-
-
-
-from kivy.app import App
-from kivy.uix.gridlayout import GridLayout
-from kivy.uix.button import Button
-from kivy.uix.boxlayout import BoxLayout
-from kivy.uix.widget import Widget
-from kivy.uix.label import Label
-from game_logic import GameBoard, Circle, Cross
-
 
 
 class Board(GridLayout):
@@ -65,7 +52,8 @@ class Board(GridLayout):
                     text='',
                     size_hint=(1, 1),
                     background_color=(1, 1, 1, 0),
-                    background_normal=''
+                    background_normal='',
+                    font_size=96
                 )
                 btn.bind(on_release=lambda btn, r=row, c=col: self.handle_move(r, c))
                 self.buttons.append(btn)
@@ -80,7 +68,7 @@ class Board(GridLayout):
             col (int): Column index (0–2).
         """
         if self.game.game_over:
-            self.status_label.text = "Game over! Press reset to play again."
+            self.status_label.text = "Press reset to play again."
             return
         current = self.game.current_turn
         # If no turn set, allow either player to start
@@ -95,7 +83,7 @@ class Board(GridLayout):
         self.update_board()
         if self.game.game_over:
             winner = self.game.current_turn if self.game.current_turn else player.symbol
-            self.status_label.text = f"{winner} wins!"
+            self.status_label.text = f"Game over! {winner} wins!"
         else:
             self.status_label.text = f"{self.game.current_turn}'s turn" if self.game.current_turn else "Next move!"
 
