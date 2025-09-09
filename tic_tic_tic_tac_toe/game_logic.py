@@ -1,24 +1,26 @@
 class GameBoard:
     """
-    Represents the state and rules of a 3x3 Tic Tac Toe board with move depreciation.
+    Represents the state and rules of a 3x3 Tic Tac Toe board with
+    move depreciation.
     Attributes:
-        board (list[list[Optional[str]]]): 3x3 grid storing 'X', 'O', or None.
-        moves (dict[str, list[tuple[int, int]]]): Tracks each player's move history.
-        game_over (bool): Flag indicating if the game has ended.
-        current_turn (Optional[str]): Tracks whose turn it is ('X' or 'O').
+        board (list[list[Optional[str]]]): 3x3 grid storing 'X', 'O',
+        or None. moves (dict[str, list[tuple[int, int]]]): Tracks each
+        player's move history. game_over (bool): Flag indicating if the
+        game has ended. current_turn (Optional[str]): Tracks whose turn
+        it is ('X' or 'O').
     """
 
     def __init__(self):
         """Initializes an empty board and resets game state."""
         self.board = [[None for _ in range(3)] for _ in range(3)]
-        self.moves = {'O': [], 'X': []}
+        self.moves = {"O": [], "X": []}
         self.game_over = False
         self.current_turn = None
 
     def display(self):
         """Prints the current board state in a human-readable format."""
         for row in self.board:
-            print([cell if cell else ' ' for cell in row])
+            print([cell if cell else " " for cell in row])
         print()
 
     def reset(self):
@@ -27,7 +29,7 @@ class GameBoard:
         Clears all moves, resets turn tracking, and prints the empty board.
         """
         self.board = [[None for _ in range(3)] for _ in range(3)]
-        self.moves = {'O': [], 'X': []}
+        self.moves = {"O": [], "X": []}
         self.game_over = False
         self.current_turn = None
         print("Game has been reset. Let's play again!")
@@ -62,9 +64,11 @@ class GameBoard:
 
         return False
 
+
 class Play:
     """
-    Represents a player and encapsulates move logic, turn enforcement, and depreciation.
+    Represents a player and encapsulates move logic, turn enforcement,
+    and depreciation.
     Attributes:
         symbol (str): The player's symbol ('X' or 'O').
         board (GameBoard): Reference to the shared game board.
@@ -83,8 +87,8 @@ class Play:
     def make_move(self, row, col):
         """
         Attempts to place the player's symbol at the given position.
-        Enforces turn order, prevents overwriting, depreciates oldest move if more than 3 are active,
-        and checks for win condition.
+        Enforces turn order, prevents overwriting, depreciates oldest move
+        if more than 3 are active, and checks for win condition.
         Args:
             row (int): Row index (0–2).
             col (int): Column index (0–2).
@@ -125,7 +129,7 @@ class Play:
             return
 
         # Switch turn
-        self.board.current_turn = 'X' if self.symbol == 'O' else 'O'
+        self.board.current_turn = "X" if self.symbol == "O" else "O"
         self.board.display()
 
 
@@ -133,13 +137,15 @@ class Circle(Play):
     """
     Represents the 'O' player.
     """
+
     def __init__(self, board):
-        super().__init__('O', board)
+        super().__init__("O", board)
 
 
 class Cross(Play):
     """
     Represents the 'X' player.
     """
+
     def __init__(self, board):
-        super().__init__('X', board)
+        super().__init__("X", board)
