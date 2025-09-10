@@ -31,7 +31,7 @@ class Board(GridLayout):
         self.cols = 3
         self.rows = 3
         self.size_hint = (None, None)
-        self.size = (380, 380)
+        self.size = (800, 800)
         self.padding = 10
         self.spacing = 10
 
@@ -55,7 +55,7 @@ class Board(GridLayout):
                     size_hint=(1, 1),
                     background_color=(1, 1, 1, 0),
                     background_normal="",
-                    font_size=96,
+                    font_size="96sp",
                 )
                 btn.bind(on_release=lambda btn, r=row, c=col: self.handle_move(r, c))
                 self.buttons.append(btn)
@@ -77,7 +77,7 @@ class Board(GridLayout):
             col (int): Column index (0–2).
         """
         if self.game.game_over:
-            self.status_label.text = "Press reset to play again."
+            self.status_label.text = "Press reset\nto play again"
             return
         current = self.game.current_turn
         # If no turn set, allow either player to start
@@ -95,7 +95,7 @@ class Board(GridLayout):
         self.update_board()
         if self.game.game_over:
             winner = self.game.current_turn if self.game.current_turn else player.symbol
-            self.status_label.text = f"Game over! {winner} wins!"
+            self.status_label.text = f"Game Over\n{winner}'s win!"
         else:
             self.status_label.text = (
                 f"{self.game.current_turn}'s turn"
@@ -150,7 +150,8 @@ class TicTacToeApp(App):
         root = BoxLayout(orientation="vertical")
         root.add_widget(Widget(size_hint=(1, 0.1)))
         status_label = Label(
-            text="X's turn", size_hint=(1, 0.1), font_size=32, bold=True
+            text="X's turn", size_hint=(1, 0.1), font_size="48sp",
+            bold=True, halign="center", valign="middle"
         )
         board = Board(status_label)
         board.pos_hint = {"center_x": 0.5, "center_y": 0.5}
@@ -160,7 +161,7 @@ class TicTacToeApp(App):
         root.add_widget(Widget(size_hint=(1, 0.1)))
         btn_row = BoxLayout(orientation="horizontal", size_hint=(1, 0.07))
         btn_row.add_widget(Widget(size_hint=(0.35, 1)))  # left spacer
-        reset_btn = Button(text="Reset", size_hint=(0.3, 1), font_size=18)
+        reset_btn = Button(text="Reset", size_hint=(0.7, 1), font_size="24sp")
         reset_btn.bind(on_release=lambda instance: board.reset_game())
         btn_row.add_widget(reset_btn)
         btn_row.add_widget(Widget(size_hint=(0.35, 1)))  # right spacer
