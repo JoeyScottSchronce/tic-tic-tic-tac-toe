@@ -1,6 +1,6 @@
 import time
 import unittest
-from tic_tic_tic_tac_toe.game_logic import GameBoard, Cross, Circle
+from tic_tic_boom.game_logic import GameBoard, Cross, Circle
 
 
 def pause():

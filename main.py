@@ -2,7 +2,7 @@ from kivy.config import Config
 Config.set('graphics', 'fullscreen', 'auto')
 Config.set('graphics', 'resizable', True)
 
-from tic_tic_tic_tac_toe.ui import TicTacToeApp
+from tic_tic_boom.ui import TicTacToeApp
 
 
 if __name__ == '__main__':

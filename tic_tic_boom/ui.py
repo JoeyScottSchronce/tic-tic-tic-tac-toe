@@ -10,7 +10,7 @@ from kivy.uix.button import Button
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.widget import Widget
 from kivy.uix.label import Label
-from tic_tic_tic_tac_toe.game_logic import GameBoard, Circle, Cross
+from tic_tic_boom.game_logic import GameBoard, Circle, Cross
 from kivy.graphics import Color, Line
 
 
@@ -161,7 +161,7 @@ class TicTacToeApp(App):
         root.add_widget(Widget(size_hint=(1, 0.1)))
         btn_row = BoxLayout(orientation="horizontal", size_hint=(1, 0.07))
         btn_row.add_widget(Widget(size_hint=(0.35, 1)))  # left spacer
-        reset_btn = Button(text="Reset", size_hint=(0.7, 1), font_size="24sp")
+        reset_btn = Button(text="Reset", size_hint=(0.6, 1), font_size="24sp")
         reset_btn.bind(on_release=lambda instance: board.reset_game())
         btn_row.add_widget(reset_btn)
         btn_row.add_widget(Widget(size_hint=(0.35, 1)))  # right spacer
