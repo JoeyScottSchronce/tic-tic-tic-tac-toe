@@ -46,8 +46,9 @@ RUN yes | $ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager --sdk_root=$ANDR
 # Copy your app into the container
 WORKDIR /app
 COPY . /app
+COPY icon.png /app/icon.png
 RUN chmod -R 755 /app
 
 # Build APK on container start
 # This command can be modified as needed for other build options
-CMD ["p4a", "apk", "--private", "/app", "--package", "org.james.ticticboom", "--name", "TicTicBoom", "--version", "1.0", "--bootstrap", "sdl2", "--requirements", "python3,kivy,requests,filetype,certifi,idna,urllib3", "--arch", "armeabi-v7a", "--ndk-api", "21", "--android-api", "33", "--sdk-dir", "/opt/android-sdk", "--ndk-dir", "/opt/android-sdk/ndk/25.2.9519653"]
+CMD ["p4a", "apk", "--private", "/app", "--package", "org.james.ticticboom", "--name", "TicTicBoom", "--version", "1.0", "--bootstrap", "sdl2", "--requirements", "python3,kivy,requests,filetype,certifi,idna,urllib3", "--arch", "armeabi-v7a", "--ndk-api", "21", "--android-api", "33", "--sdk-dir", "/opt/android-sdk", "--ndk-dir", "/opt/android-sdk/ndk/25.2.9519653", "--icon", "/app/icon.png"]
