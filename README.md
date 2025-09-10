@@ -1,4 +1,4 @@
-# tic-tic-tic-tac-toe
+# tic-tic-boom
 
 A modern version of Tic Tac Toe where ties are impossible! The game continues until a winner is declared, thanks to move depreciation—oldest moves disappear, keeping the board dynamic.
 
@@ -15,12 +15,12 @@ A modern version of Tic Tac Toe where ties are impossible! The game continues un
 ## Folder Structure
 
 ```
-tic-tic-tic-tac-toe/
+tic-tic-boom/
 │
 ├── main.py                  # Entry point for the Kivy app
 ├── requirements.txt         # All dependencies for the project
 ├── README.md                # This file
-├── tic_tic_tic_tac_toe/     # Main package
+├── tic_tic_boom/            # Main package
 │   ├── __init__.py
 │   ├── game_logic.py        # Game rules, board, player logic
 │   └── ui.py                # Kivy UI and app class
@@ -68,12 +68,12 @@ This runs all unit tests for the game logic.
 - To lint:
   ```pwsh
   pip install flake8
-  flake8 tic_tic_tic_tac_toe tests
+  flake8 tic_tic_boom tests
   ```
 - To format:
   ```pwsh
   pip install black
-  black tic_tic_tic_tac_toe tests
+  black tic_tic_boom tests
   ```
 
 ## Notes
