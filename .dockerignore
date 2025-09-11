@@ -1,0 +1,48 @@
+# Version control
+.git
+.gitignore
+
+# Documentation and markdown
+*.md
+README*
+LICENSE*
+
+# Python caches and bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.pytest_cache/
+
+# Logs and temporary files
+*.log
+*.tmp
+temp/
+tmp/
+
+# Tests and CI files
+tests/
+.ci/
+.github/
+coverage*
+
+# Build artifacts (if any)
+dist/
+build/
+*.apk
+*.aab
+
+# Editor/IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Other irrelevant files
+venv/          # Virtual environments
+*.env          # Environment variable files
